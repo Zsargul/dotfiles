@@ -1,0 +1,5 @@
+! This separates the left and right mod keys into independent keys. This is crucial for the $modR
+! key to work in i3. Make sure this file is read and ran in .xinitrc so the changes are not lost 
+! after restart.
+remove Mod4 = Super_R
+add Mod3 = Super_R
