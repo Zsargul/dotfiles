@@ -1,0 +1,468 @@
+#██╗░░██╗██╗░░░██╗██████╗░░█████╗░██╗░██████╗
+#██║░██╔╝██║░░░██║██╔══██╗██╔══██╗╚█║██╔════╝
+#█████═╝░██║░░░██║██████╦╝███████║░╚╝╚█████╗░
+#██╔═██╗░██║░░░██║██╔══██╗██╔══██║░░░░╚═══██╗
+#██║░╚██╗╚██████╔╝██████╦╝██║░░██║░░░██████╔╝
+#╚═╝░░╚═╝░╚═════╝░╚═════╝░╚═╝░░╚═╝░░░╚═════╝░
+#░░░░██╗██████╗░░██╗░░░░░░░██╗███╗░░░███╗░░░░
+#░░░░██║╚════██╗░██║░░██╗░░██║████╗░████║░░░░
+#░░░░██║░█████╔╝░╚██╗████╗██╔╝██╔████╔██║░░░░
+#░░░░██║░╚═══██╗░░████╔═████║░██║╚██╔╝██║░░░░
+#░░░░██║██████╔╝░░╚██╔╝░╚██╔╝░██║░╚═╝░██║░░░░
+#░░░░╚═╝╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝░░░░░╚═╝░░░░
+
+# I3WM DOCS: http://i3wm.org/docs/userguide.html
+
+# To bind a terminal-opened app to a key use this
+# bindsym <key> exec urxvt -hold -e <your command>
+
+######################################################################
+## Mod Keys ##########################################################
+######################################################################
+# I use alt as well as differentiate the left & right
+# super keys to create more keybinds. You must use
+# xmodmap to remap the left and right super keys,
+# otherwise they will both be assigned to $mod.
+# Do this with the following commands:
+# 
+# xmodmap -e 'remove Mod4 = Super_R'
+# xmodmap -e 'add Mod3 = Super_R'
+# xmodmap (To list the key mappings and see if they are correct)
+
+set $mod Mod4
+set $modR Mod3
+set $alt Mod1
+
+######################################################################
+## System ############################################################ 
+######################################################################
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Set shut down, restart and locking features
+bindsym $mod+0 mode "$mode_system"
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # Exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Lock screen
+bindsym $modR+l exec --no-startup-id blurlock
+
+######################################################################
+## Running stuff on startup ##########################################
+######################################################################
+
+exec --no-startup-id "nvidia-settings -l"
+exec --no-startup-id fcitx5 -d
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id nm-applet
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id pamac-tray
+#exec --no-startup-id clipit
+#exec_always --no-startup-id fix_xcursor
+
+######################################################################
+## Monitors & Workspaces #############################################
+######################################################################
+
+# Find monitors iwith xrandr
+exec --no-startup-id xrandr --output HDMI-1 --right-of HDMI-0 --auto
+
+# Set monitors
+set $mon1 HDMI-0
+set $mon2 HDMI-1
+
+# Assigning workspaces to monitors
+workspace $ws1 output $mon1
+workspace $ws2 output $mon1
+workspace $ws3 output $mon1
+workspace $ws4 output $mon1
+workspace $ws5 output $mon1
+workspace $ws6 output $mon2
+workspace $ws7 output $mon2
+workspace $ws8 output $mon2
+workspace $ws9 output $mon2
+
+# Workspace names
+# Note about naming:
+# Workspaces are kept in numerical order as long as they start with a number.
+# Otherwise they appear on the i3bar in the order they were created.
+set $ws1 "1:I"
+set $ws2 "2:II"
+set $ws3 "3:III"
+set $ws4 "4:IV"
+set $ws5 "5:V" 
+set $ws6 "6:VI" 
+set $ws7 "7:VII"
+set $ws8 "8:VIII"
+set $ws9 "9:IX"
+
+# Switch to workspace
+bindsym $alt+1 workspace $ws1
+bindsym $alt+2 workspace $ws2
+bindsym $alt+3 workspace $ws3
+bindsym $alt+4 workspace $ws4
+bindsym $alt+5 workspace $ws5
+bindsym $alt+6 workspace $ws6
+bindsym $alt+7 workspace $ws7
+bindsym $alt+8 workspace $ws8
+bindsym $alt+9 workspace $ws9
+
+# Move focused container to workspace
+bindsym $modR+1 move container to workspace $ws1
+bindsym $modR+2 move container to workspace $ws2
+bindsym $modR+3 move container to workspace $ws3
+bindsym $modR+4 move container to workspace $ws4
+bindsym $modR+5 move container to workspace $ws5
+bindsym $modR+6 move container to workspace $ws6
+bindsym $modR+7 move container to workspace $ws7
+bindsym $modR+8 move container to workspace $ws8
+bindsym $modR+9 move container to workspace $ws9
+
+# Move focused container to workspace and focus new workspace
+bindsym $alt+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $alt+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $alt+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $alt+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $alt+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $alt+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $alt+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $alt+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $alt+Shift+9 move container to workspace $ws9; workspace $ws9
+
+# navigate workspaces next / previous
+bindsym $modR+Up workspace next
+bindsym $modR+Down workspace prev
+
+######################################################################
+## Windows & Borders #################################################
+######################################################################
+
+# Configure border style <normal|1pixel|pixel xx|none|pixel>
+default_border pixel 2
+default_floating_border normal
+
+# Hide borders
+hide_edge_borders none
+
+# Change borders
+bindsym $mod+u border none
+bindsym $mod+y border pixel 2
+bindsym $mod+n border normal
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font xft:URWGothic-Book 11
+
+# Use Mouse+$mod to drag floating windows
+floating_modifier $mod
+
+# Start a terminal
+bindsym $mod+Return exec terminal
+# Open invisible i3 container
+bindsym $modR+0 open
+# Kill focused window
+bindsym $mod+Shift+q kill
+# Start program launcher
+bindsym $mod+d exec --no-startup-id rofi -show run
+# Launch categorized menu
+bindsym $mod+z exec --no-startup-id morc_menu
+
+# Change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window 
+bindsym $alt+Left move left
+bindsym $alt+Down move down
+bindsym $alt+Up move up
+bindsym $alt+Right move right
+
+# workspace back and forth (with/without active container)
+workspace_auto_back_and_forth yes
+bindsym $mod+b workspace back_and_forh
+bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+
+# Split orientation
+bindsym $modR+h split h; exec notify-send '[Tiling: _ ]'
+bindsym $modR+v split v; exec notify-send '[Tiling: | ]'
+bindsym $modR+t split toggle
+
+# Toggle fullscreen mode for focused container
+bindsym $mod+F11 fullscreen toggle
+
+# Change container layout
+bindsym $modR+s layout stacking
+bindsym $modR+w layout tabbed
+bindsym $modR+e layout toggle split
+
+# Toggle tiling / floating
+bindsym $modR+f floating toggle
+# Toggle border/title bar
+bindsym $modR+b border toggle
+# change focus between tiling/floating windows
+bindsym $modR+space focus mode_toggle
+# toggle sticky
+bindsym $modR+x sticky toggle; exec notify-send '[Sticky toggled]'
+# focus the parent container
+bindsym $mod+a focus parent
+
+# Resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
+
+        # exit resize mode: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+######################################################################
+## Sound #############################################################
+######################################################################
+
+exec --no-startup-id start-pulseaudio-x11
+exec --no-startup-id pa-applet
+
+# Open pavucontrol
+bindsym $alt+x exec pavucontrol
+
+######################################################################
+## Application start keybinds ########################################
+######################################################################
+
+bindsym $mod+Ctrl+b exec terminal -e "bmenu"
+bindsym $alt+b exec firefox
+bindsym $alt+r exec terminal -e "ranger"
+bindsym $alt+p exec pcmanfm
+bindsym $alt+g exec terminal -e "wordgrinder"
+bindsym $alt+s exec spotify
+bindsym $alt+c exec sayonara 
+bindsym $alt+l exec lutris
+bindsym $alt+w exec steam
+bindsym $alt+t exec thunderbird
+
+# Screenshot
+bindsym Print exec --no-startup-id i3-scrot
+# Screenshot with flameshot
+bindsym $alt+f exec "flameshot gui"
+
+#bindsym $mod+t exec --no-startup-id pkill picom
+#bindsym $mod+Ctrl+t exec --no-startup-id picom -b
+bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
+bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
+bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
+bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+
+######################################################################
+## Scratchpad (I never use this) ##################################### 
+######################################################################
+
+# move the currently focused window to the scratchpad
+# bindsym $modR+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+# bindsym $modR+minus scratchpad show
+
+######################################################################
+## Open applications in specific workspaces/modes ####################
+######################################################################
+
+# REMINDER: 
+# Terminal apps (such as spt or ranger) need specific instance names (NOT CLASSES)
+# assigned to them in order to move them to certain workspaces on startup.
+# see: https://www.reddit.com/r/i3wm/wiki/faq/assign_emulator
+assign [class="Steam"] $ws4
+assign [class="lutris"] $ws4
+assign [class="TelegramDesktop"] $ws7
+assign [class="discord"] $ws8
+
+# Music players (These often tend to be problematic in I3)
+# Spotify
+for_window [class="Spotify"] move container to workspace $ws8
+# Spotify tui
+# assign [instance="spt_instance"] $ws8 # CLI apps use "instance" instead of "class"
+# Sayonara player
+assign [class="sayonara"] $ws8
+
+# Open specific applications in floating mode
+for_window [title="alsamixer"] floating enable
+for_window [title="File Transfer*"] floating enable
+for_window [class="Galculator"] floating enable 
+for_window [class="GParted"] floating enable 
+for_window [class="Lightdm-settings"] floating enable
+for_window [class="Lxappearance"] floating enable sticky enable border normal
+for_window [class="Nitrogen"] floating enable sticky enable border normal
+for_window [class="Pavucontrol"] floating enable
+for_window [class="qt5ct"] floating enable sticky enable border normal
+
+# Floating mode for Steam
+for_window [class="Steam" title="Friends List"] floating enable
+for_window [class="Steam" title="Steam - News"] floating enable
+for_window [class="Steam" title=".* - Chat"] floating enable
+for_window [class="Steam" title="Settings"] floating enable
+for_window [class="Steam" title=".* - event started"] floating enable
+for_window [class="Steam" title=".* CD key"] floating enable
+for_window [class="Steam" title="Steam - Self Updater$"] floating enable
+for_window [class="Steam" title="Screenshot Uploader"] floating enable
+for_window [class="Steam" title="Steam Guard - Computer Authorization Required"] floating enable
+for_window [title="Steam Keyboard"] floating enable
+
+# Floating mode for Battlenet
+for_window [class="battle.net.exe" title="Battle.net"] floating enable
+
+######################################################################
+## General Theming ###################################################
+######################################################################
+
+# Color palette used for the terminal ( ~/.Xresources file )
+# Colors are gathered based on the documentation:
+# https://i3wm.org/docs/userguide.html#xresources
+set_from_resource $term_background background
+set_from_resource $term_foreground foreground
+set_from_resource $term_color0     color0
+set_from_resource $term_color1     color1
+set_from_resource $term_color2     color2
+set_from_resource $term_color3     color3
+set_from_resource $term_color4     color4
+set_from_resource $term_color5     color5
+set_from_resource $term_color6     color6
+set_from_resource $term_color7     color7
+set_from_resource $term_color8     color8
+set_from_resource $term_color9     color9
+set_from_resource $term_color10    color10
+set_from_resource $term_color11    color11
+set_from_resource $term_color12    color12
+set_from_resource $term_color13    color13
+set_from_resource $term_color14    color14
+set_from_resource $term_color15    color15
+
+# Start i3bar to display a workspace bar (plus the system information if available)
+bar {
+	i3bar_command i3bar
+	status_command i3status
+	position top
+
+	# Primary output for bar. See: https://i3wm.org/docs/userguide.html#_tray_output
+ 	tray_output primary
+
+	bindsym button4 nop
+	bindsym button5 nop
+	font xft:Terminus (TTF) Bold 12
+	strip_workspace_numbers yes
+
+	colors {
+		background #000000
+		statusline #F76E11
+		separator  #F76E11
+
+#		                   border  backgr. text
+		focused_workspace  #F76E11 #F76E11 #000000
+		active_workspace   #000000 #5D2A06 #000000
+		inactive_workspace #000000 #622C06 #000000
+		urgent_workspace   #900000 #900000 #000000
+		binding_mode       #900000 #900000 #000000
+    }
+}
+
+# Toggle i3status bar
+bindsym $modR+m bar mode toggle
+
+# Theme colors
+# class                 border  bground text    indicator child_border
+client.focused          #F76E11 #F76E11 #000000 #F76E11   #F76E11
+client.focused_inactive #5E2A06 #5E2A06 #FFFFFF #5E2A06   #5E2A06
+client.unfocused        #5E2A06 #5E2A06 #FFFFFF #5E2A06   #5E2A06
+client.urgent           #900000 #900000 #000000 #900000   #900000
+client.placeholder      #5E2A06 #5E2A06 #FFFFFF #5E2A06   #5E2A06
+
+client.background       #1E0D02
+
+
+######################################################################
+## Gap Theming #######################################################
+######################################################################
+
+# Set inner/outer gaps
+gaps inner 10
+gaps outer 10
+
+# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
+# gaps inner|outer current|all set|plus|minus <px>
+# gaps inner all set 10
+# gaps outer all plus 5
+
+# Smart gaps (gaps used if only more than one container on the workspace)
+# smart_gaps on
+
+# Smart borders (draw borders around container only if it is not the only container on this workspace) 
+# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
+# smart_borders on
+
+# Press $modR+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $modR+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
