@@ -84,7 +84,7 @@ exec --no-startup-id pamac-tray
 ## Monitors & Workspaces #############################################
 ######################################################################
 
-# Find monitors iwith xrandr
+# Find monitors with xrandr
 exec --no-startup-id xrandr --output HDMI-1 --right-of HDMI-0 --auto
 
 # Set monitors
