@@ -21,13 +21,10 @@
 ######################################################################
 # I use alt as well as differentiate the left & right
 # super keys to create more keybinds. You must use
-# xmodmap to remap the left and right super keys,
-# otherwise they will both be assigned to $mod.
-# Do this with the following commands:
-# 
-# xmodmap -e 'remove Mod4 = Super_R'
-# xmodmap -e 'add Mod3 = Super_R'
-# xmodmap (To list the key mappings and see if they are correct)
+# xmodmap to remap the left and right super keys.
+# To do this you must find a way to save the xmodmap
+# user config, for example putting your ~/.Xmodmap file
+# into ~/.xinitrc to make sure it is run at startup.
 
 set $mod Mod4
 set $modR Mod3
