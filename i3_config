@@ -302,16 +302,16 @@ bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 # see: https://www.reddit.com/r/i3wm/wiki/faq/assign_emulator
 assign [class="Steam"] $ws4
 assign [class="lutris"] $ws4
-assign [class="TelegramDesktop"] $ws7
+assign [class="TelegramDesktop"] $ws8
 assign [class="discord"] $ws8
 
 # Music players (These often tend to be problematic in I3)
 # Spotify
-for_window [class="Spotify"] move container to workspace $ws8
+for_window [class="Spotify"] move container to workspace $ws7
 # Spotify tui
 # assign [instance="spt_instance"] $ws8 # CLI apps use "instance" instead of "class"
 # Sayonara player
-assign [class="sayonara"] $ws8
+assign [class="sayonara"] $ws7
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable
