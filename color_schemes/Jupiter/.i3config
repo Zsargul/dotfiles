@@ -1,0 +1,39 @@
+bar {
+	i3bar_command i3bar
+	status_command i3status
+	position top
+
+	# Primary output for bar. See: https://i3wm.org/docs/userguide.html#_tray_output
+ 	tray_output primary
+
+	bindsym button4 nop
+	bindsym button5 nop
+	font xft:Terminus (TTF) Bold 12
+	strip_workspace_numbers yes
+
+	colors {
+		background #000000
+		statusline #F76E11
+		separator  #F76E11
+
+#		                   border  backgr. text
+		focused_workspace  #F76E11 #F76E11 #000000
+		active_workspace   #000000 #5D2A06 #000000
+		inactive_workspace #000000 #622C06 #000000
+		urgent_workspace   #900000 #900000 #000000
+		binding_mode       #900000 #900000 #000000
+    }
+}
+
+# Toggle i3status bar
+bindsym $modR+m bar mode toggle
+
+# Theme colors
+# class                 border  bground text    indicator child_border
+client.focused          #F76E11 #F76E11 #000000 #F76E11   #F76E11
+client.focused_inactive #5E2A06 #5E2A06 #FFFFFF #5E2A06   #5E2A06
+client.unfocused        #5E2A06 #5E2A06 #FFFFFF #5E2A06   #5E2A06
+client.urgent           #900000 #900000 #000000 #900000   #900000
+client.placeholder      #5E2A06 #5E2A06 #FFFFFF #5E2A06   #5E2A06
+
+client.background       #1E0D02
