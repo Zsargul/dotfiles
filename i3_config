@@ -301,7 +301,6 @@ bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 # assigned to them in order to move them to certain workspaces on startup.
 # see: https://www.reddit.com/r/i3wm/wiki/faq/assign_emulator
 assign [class="Steam"] $ws4
-assign [class="lutris"] $ws4
 assign [class="TelegramDesktop"] $ws8
 assign [class="discord"] $ws8
 
