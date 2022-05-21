@@ -103,15 +103,15 @@ workspace $ws9 output $mon2
 # Note about naming:
 # Workspaces are kept in numerical order as long as they start with a number.
 # Otherwise they appear on the i3bar in the order they were created.
-set $ws1 "1:I"
-set $ws2 "2:II"
-set $ws3 "3:III"
-set $ws4 "4:IV"
-set $ws5 "5:V" 
-set $ws6 "6:VI" 
-set $ws7 "7:VII"
-set $ws8 "8:VIII"
-set $ws9 "9:IX"
+set $ws1 "1:α"
+set $ws2 "2:β"
+set $ws3 "3:γ"
+set $ws4 "4:δ"
+set $ws5 "5:ε" 
+set $ws6 "6:ζ" 
+set $ws7 "7:η"
+set $ws8 "8:θ"
+set $ws9 "9:ι"
 
 # Switch to workspace
 bindsym $alt+1 workspace $ws1
@@ -378,18 +378,17 @@ bar {
 	font xft:Terminus (TTF) Bold 12
 	strip_workspace_numbers yes
 
-	colors {
-		background #000000
-		statusline #F76E11
-		separator  #F76E11
+colors {
+	background #000000
+	statusline #3E689B
+	separator  #FFFFFF
 
-#		                   border  backgr. text
-		focused_workspace  #F76E11 #F76E11 #000000
-		active_workspace   #000000 #5D2A06 #000000
-		inactive_workspace #000000 #622C06 #000000
-		urgent_workspace   #900000 #900000 #000000
-		binding_mode       #900000 #900000 #000000
-    }
+	focused_workspace  #3E689B #3E689B #FFFFFF
+	active_workspace   #1A2A3D #1A2A3D #FFFFFF
+	inactive_workspace #1A2A3D #1A2A3D #FFFFFF
+	urgent_workspace   #900000 #900000 #FFFFFF
+	binding_mode       #900000 #900000 #FFFFFF
+       }
 }
 
 # Toggle i3status bar
@@ -397,14 +396,13 @@ bindsym $modR+m bar mode toggle
 
 # Theme colors
 # class                 border  bground text    indicator child_border
-client.focused          #F76E11 #F76E11 #000000 #F76E11   #F76E11
-client.focused_inactive #5E2A06 #5E2A06 #FFFFFF #5E2A06   #5E2A06
-client.unfocused        #5E2A06 #5E2A06 #FFFFFF #5E2A06   #5E2A06
-client.urgent           #900000 #900000 #000000 #900000   #900000
-client.placeholder      #5E2A06 #5E2A06 #FFFFFF #5E2A06   #5E2A06
+client.focused          #3E689B #3E689B #FFFFFF #F4F4F4   #3E689B
+client.focused_inactive #1A2A3D #1A2A3D #FFFFFF #F4F4F4   #1A2A3D
+client.unfocused        #1A2A3D #1A2A3D #FFFFFF #F4F4F4   #1A2A3D
+client.urgent           #900000 #900000 #FFFFFF #F4F4F4   #900000
+client.placeholder      #000000 #0C0C0C #FFFFFF #F4F4F4   #0C0C0C
 
-client.background       #1E0D02
-
+client.background       #000000
 
 ######################################################################
 ## Gap Theming #######################################################
