@@ -8,3 +8,6 @@ Here are screenshots of the various colour schemes I have saved here:
 
 * ### Jupiter:
 ![Jupiter](https://github.com/kubakerlin/dotfiles/blob/main/color_schemes/Jupiter/jupiter.png)
+
+* ### Winter:
+![Winter](https://github.com/kubakerlin/dotfiles/blob/main/color_schemes/Winter/winter.png)
