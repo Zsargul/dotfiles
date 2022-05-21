@@ -16,28 +16,45 @@ XTerm*selectToClipboard: true
 
 *fading:                          8
 *fadeColor:                       black
-*pointerColorBackground:          #2B2C2B
-*pointerColorForeground:          #16A085
+*pointerColorBackground:          #1A2A3D
+*pointerColorForeground:          #3E689B
 
-*color0: #4a4131
-*color1: #cb712a
-*color2: #cc7c34
-*color3: #c38e45
-*color4: #767b6f
-*color5: #9fafaf
-*color6: #86a3a4
-*color7: #cad7ca
-*color8: #4b4131
-*color9: #cb712a
-*color10: #cc7c34
-*color11: #c38e45
-*color12: #767b6f
-*color13: #abbcbc
-*color14: #87a4a5
-*color15: #cad7ca
-*background: #181818
-*foreground: #767b6f
-*cursorColor: #c7c7c7
+! special
+*foreground:   #c0c0c0
+*background:   #121212
+*cursorColor:  #c0c0c0
+
+! black
+*color0:       #080808
+*color8:       #36393f
+
+! red
+*color1:       #515978
+*color9:       #778099
+
+! green
+*color2:       #3ea28d
+*color10:      #71c4ba
+
+! yellow
+*color3:       #4dc5ce
+*color11:      #5e767f
+
+! blue
+*color4:       #6ea2a5
+*color12:      #6abdc1
+
+! magenta
+*color5:       #a8a8a8
+*color13:      #4e4d80
+
+! cyan
+*color6:       #558188
+*color14:      #4fc8ce
+
+! white
+*color7:       #c0c0c0
+*color15:      #a6a8aa
 
 Xcursor.theme: xcursor-breeze-snow
 Xcursor.size:                     0
